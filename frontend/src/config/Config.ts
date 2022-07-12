@@ -29,7 +29,7 @@ export class Config {
         DEBUG: true,
         LOG_LEVEL: "debug",
         LOG_FILE: "app.log",
-        WEBSITE : "https://akrck02.github.io/#/software/GTD-Framework"
+        WEBSITE : "https://akrck02.github.io/#/software/NASH-DASH",
     };
 
     public static PATHS = {
@@ -51,6 +51,7 @@ export class Config {
     public static API = {
         URL : "http://127.0.0.1:3333/api/v1/",
         PING : "http://127.0.0.1:3333/api/v1/ping/",
+        TERMINAL_WS : "ws://127.0.0.1:9898/"
     };
 
 

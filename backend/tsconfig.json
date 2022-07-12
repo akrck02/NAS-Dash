@@ -16,6 +16,6 @@
       "forceConsistentCasingInFileNames": true
     },
     "files": [
-
+      "src/TerminalWs.ts"
     ]
   }
