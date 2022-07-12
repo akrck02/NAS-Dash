@@ -1,26 +1,55 @@
+import { exec, execSync } from "child_process";
+
 export class TerminalWs {
 
     public static start() {
 
         // Node.js socket server script
-        const net = require('net');
+        const WebSocket = require('ws');
 
-        // Create a server object
-        const server = net.createServer((socket : any) => {
-            socket.on('data', (data :any) => {
-                console.log(data.toString());
+        const server = new WebSocket.Server({ port: 8080 });
+          
+      
+        server.on('connection', function(socket :any) {
+            console.log("[Websocket] connected by client");
+            
+            
+            // When you receive a message, send that message to every socket.
+            socket.on('message', function(msg : any) {
+                
+                console.log("[websocket] Command recieved: " + msg);
+                
+                //Execute command 
+                const term = exec(msg.toString(),);
+
+                // On output data 
+                term.stdout?.on("data", (data) => {
+                    console.log("[websocket] Sending " + data.toString());
+                    socket.send(JSON.stringify({
+                        type : "data",
+                        message : data.toString()
+                    }))
+                })
+
+                // On output error data 
+                term.stderr?.on("data", (data) => {
+                    console.log("[websocket] Sending error " + data.toString());
+                    
+                    socket.send(JSON.stringify({
+                        type : "error",
+                        message : data.toString()
+                    }))
+                })
+                
+                // what to do when the command is done
+                term.on('exit', function(code){});
+
             });
-
-            socket.write('SERVER: Hello! This is server speaking.');
-            socket.end('SERVER: Closing connection now.');
-        })
-        .on('error', (err : Error) => {
-            console.error(err);
-        });
-
-        // Open server on port 9898
-        server.listen(9898, () => {
-            console.log('opened server on', server.address().port);
+            
+            // When a socket closes, or disconnects, remove it from the array.
+            socket.on('close', function() {
+               console.log("[Websocket] Connection closed.");
+            });
         });
     }
 

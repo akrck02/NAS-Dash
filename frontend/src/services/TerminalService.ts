@@ -1,9 +1,12 @@
-import { Config } from "../config/Config";
+import { Config } from "../config/Config.js";
 
 export default class TerminalService {
 
     public static connectWs(){
-        var exampleSocket = new WebSocket(Config.API.TERMINAL_WS, ["ws", "wss"]);
+        const exampleSocket = new WebSocket(Config.API.TERMINAL_WS, ["ws", "wss"]);
+        console.log("Connecting to terminal websocket...");
+        console.log(exampleSocket ? "Done." : "Failed.");
+        return exampleSocket;
     }
 
 

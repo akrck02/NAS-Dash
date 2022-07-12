@@ -51,7 +51,7 @@ export class Config {
     public static API = {
         URL : "http://127.0.0.1:3333/api/v1/",
         PING : "http://127.0.0.1:3333/api/v1/ping/",
-        TERMINAL_WS : "ws://127.0.0.1:9898/"
+        TERMINAL_WS : "ws://127.0.0.1:8080/"
     };
 
 
