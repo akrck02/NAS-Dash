@@ -88,7 +88,8 @@ export default class HomeView extends ViewUI {
         
         const helpBox = this.createInfoBox("terminal",
             App.getBundle().home.TERMINAL, 
-            App.getBundle().home.TERMINAL_DESCRIPTION
+            App.getBundle().home.TERMINAL_DESCRIPTION,
+            Config.VIEWS.TERMINAL
         );
 
         const configBox = this.createInfoBox("folder",

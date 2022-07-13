@@ -44,6 +44,7 @@ export class Config {
     public static VIEWS = {
         BASE_URL: "../app/#/",
         HOME: "../app/#/home/",
+        TERMINAL: "../app/#/terminal/",
         ERROR: "../app/#/error/",
         BLANK: "../app/#/blank/",
     };
